@@ -36,7 +36,7 @@ Video-guided 3D animation holds immense potential for content creation, offering
 * May 12, 2026: 👋 The training & inference code of **R-DMesh** has been released! The checkpoint will be released in a few days.
 * Mar 28, 2026: 👋 **R-DMesh** has been accepted by [Siggraph2026](https://s2026.siggraph.org/)! We will release the code asap. Please stay tuned for updates！
 
-## 🔧 Installation
+## 🔧 Preparation
 
 ```bash
 # Create conda environment
@@ -45,6 +45,28 @@ conda activate rdmesh
 
 # Install dependencies
 pip install -r requirements.txt
+```
+
+## 📖 Inference
+
+### 🎬 Animate a Mesh with Reference Video (Main Demo)
+
+Animate your 3D mesh using a reference video:
+
+```bash
+python test_drive.py \
+    --data_dir /path/to/meshes \
+    --video_data_dir /path/to/reference/videos \
+    --vae_dir /path/to/vae/checkpoints \
+    --rf_model_dir /path/to/rf/checkpoints \
+    --json_dir ./dvae_factors \
+    --wan_model_dir /path/to/wan/model \
+    --num_hops 5 --mode vc --alpha_hops 0.7 \
+    --seed 666 --rf_epoch 223 --num_traj 4096 --dit_layers 10 \
+    --rf_exp your_rf_experiment \
+    --testset your_test_set --guidance_scale 1.5 --video_width 256 --num_test 10 \
+    --mesh_list your_mesh.glb \
+    --video_list your_video.mp4
 ```
 
 ## 🏋️‍♂️ Training
