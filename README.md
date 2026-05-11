@@ -28,7 +28,7 @@ Zijie Wu<sup>1,2</sup>, Lixin Xu<sup>2</sup>, Puhua Jiang<sup>2</sup>, Sicong Li
 
 ## 📖 Overview
 
-We present R-DMesh: a unified video-guided 4D mesh generation framework that tackles the long-overlooked pose misalignment dilemma. Given a static mesh and a reference video with arbitrary initial poses, our method automatically rectifies the mesh to the video's starting state and generates high-fidelity, temporally consistent animations. Beyond video-driven animation, R-DMesh naturally supports a wide range of downstream applications, including pose retargeting, motion retargeting, and holistic 4D generation.
+We present **R-DMesh**: a unified video-guided 4D mesh generation framework that tackles the long-overlooked pose misalignment dilemma. Given a static mesh and a reference video with arbitrary initial poses, our method automatically rectifies the mesh to the video's starting state and generates high-fidelity, temporally consistent animations. Beyond video-driven animation, R-DMesh naturally supports a wide range of downstream applications, including pose retargeting, motion retargeting, and holistic 4D generation.
 
 
 ## 🔥 Latest News
