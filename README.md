@@ -38,6 +38,8 @@ Video-guided 3D animation holds immense potential for content creation, offering
 
 ## 🔧 Preparation
 
+### 1. Environment Setup
+
 ```bash
 # Create conda environment
 conda create -n rdmesh python=3.11
@@ -47,26 +49,68 @@ conda activate rdmesh
 pip install -r requirements.txt
 ```
 
+### 2. Download Pretrained Models
+
+Download the pretrained checkpoints from [🤗 HuggingFace](https://huggingface.co/R-DMesh) and place them under `./ckpts/`:
+
+```bash
+# Option 1: Use huggingface-cli
+huggingface-cli download R-DMesh/R-DMesh --local-dir ./ckpts
+
+# Option 2: Manually download and organize
+```
+
+You also need to download [Wan2.2-TI2V-5B](https://huggingface.co/Wan-AI/Wan2.2-TI2V-5B) for video conditioning:
+```bash
+huggingface-cli download Wan-AI/Wan2.2-TI2V-5B --local-dir ./ckpts/Wan2.2-TI2V-5B
+```
+
+### 3. Prepare Test Data
+
+Place your input meshes and reference videos under `./test_data/`.
+
+### 📂 Expected Directory Structure
+
+After the steps above, your project should look like this:
+
+```
+R-DMesh/
+├── test_data/
+│   ├── meshes/                  # Input meshes (.glb or .fbx)
+│   │   └── your_mesh.glb
+│   │   └── your_mesh2.fbx   
+│   └── videos/                  # Reference videos (.mp4)
+│       └── your_video.mp4
+└── ckpts/
+    ├── dvae/                    # VAE checkpoints
+    ├── rf_model/                # Rectified Flow (DiT) checkpoints
+    ├── dvae_factor/             # VAE normalization factors
+    └── Wan2.2-TI2V-5B/          # Wan video model
+```
+
 ## 📖 Inference
 
-### 🎬 Animate a Mesh with Reference Video (Main Demo)
-
-Animate your 3D mesh using a reference video:
+### 🎬 Animate a Mesh with Reference Video
 
 ```bash
 python test_drive.py \
-    --data_dir /path/to/meshes \
-    --video_data_dir /path/to/reference/videos \
-    --vae_dir /path/to/vae/checkpoints \
-    --rf_model_dir /path/to/rf/checkpoints \
-    --json_dir ./dvae_factors \
-    --wan_model_dir /path/to/wan/model \
-    --num_hops 5 --mode vc --alpha_hops 0.7 \
-    --seed 666 --rf_epoch 223 --num_traj 4096 --dit_layers 10 \
-    --rf_exp your_rf_experiment \
-    --testset your_test_set --guidance_scale 1.5 --video_width 256 --num_test 10 \
     --mesh_list your_mesh.glb \
-    --video_list your_video.mp4
+    --video_list your_video.mp4 \
+    --rf_exp rdmeshdit --rf_epoch f \
+    --num_hops 5 --alpha_hops 0.7 \
+    --num_traj 4096 --guidance_scale 1.5
+```
+
+> 💡 The command above assumes the [default directory structure](#-expected-directory-structure) from the Preparation section.  
+> If your files are placed elsewhere, specify the paths explicitly:
+
+```bash
+    --data_dir /your/path/to/meshes \
+    --video_data_dir /your/path/to/videos \
+    --vae_dir /your/path/to/dvae \
+    --rf_model_dir /your/path/to/rf_model \
+    --json_dir /your/path/to/dvae_factor \
+    --wan_model_dir /your/path/to/Wan2.2-TI2V-5B
 ```
 
 ## 🏋️‍♂️ Training
