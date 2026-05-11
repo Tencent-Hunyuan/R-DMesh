@@ -1,19 +1,40 @@
 <div align="center">
-  <h1>R-DMesh: Video-Guided 3D Animation via Rectified Dynamic Mesh Flow</h1>
+  <img src="https://github.com/R-DMesh/R-DMesh.github.io/blob/main/assets/logo.png" width="150px">
+
+</div>
+
+<div align="center">
+  <h1>R-DMesh: Video-Guided 3D Animation via Rectified Dynamic Mesh Flow (Siggraph 2026)</h1>
   
-  <p>A powerful framework for dynamic mesh generation and animation</p>
+  
+</div>
+
+<div align="center">
+
+Zijie Wu<sup>1,2</sup>, Lixin Xu<sup>2</sup>, Puhua Jiang<sup>2</sup>, Sicong Liu<sup>2</sup>, Chunchao Guo<sup>2</sup>, Xiang Bai<sup>1</sup> <br>
+<sup>1</sup>Huazhong University of Science and Technology (HUST), <sup>2</sup>Tencent Hunyuan
+
+<a href="https://r-dmesh.github.io/"><img src='https://img.shields.io/badge/Project-RDMesh-brightgreen?logo=github' alt='Project'></a>
+<a href="https://arxiv.org/abs/"><img src='https://img.shields.io/badge/arXiv-RDMesh-B31B1B?logo=arxiv' alt='Paper PDF'></a>
+<a href="https://youtu.be/xBrMjPnH3_w"><img src='https://img.shields.io/badge/Video-Demo-FF0000?logo=youtube' alt='Video'></a>
+<a href=""><img src='https://img.shields.io/badge/HuggingFace-Model Weights-yellow?logo=huggingface' alt='Hugging Face Weights'></a>
+<a href=""><img src='https://img.shields.io/badge/Google%20Drive-Model Weights-blue?logo=googledrive&logoColor=white' alt='Download from Google Drive'></a>
+
+</div>
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/R-DMesh/R-DMesh.github.io/main/assets/teaser.png" alt="R-DMesh Teaser" width="100%">
 </div>
 
 ## 📖 Overview
 
-R-DMesh is a robust framework for dynamic mesh generation and animation, featuring advanced VAE architectures and diffusion models for high-quality mesh animation.
+Video-guided 3D animation holds immense potential for content creation, offering intuitive and precise control over dynamic assets. However, practical deployment faces a critical yet frequently overlooked hurdle: the pose misalignment dilemma. In real-world scenarios, the initial pose of a user-provided static mesh rarely aligns with the starting frame of a reference video. Naively forcing a mesh to follow a mismatched trajectory inevitably leads to severe geometric distortion or animation failure. To address this, we present Rectified Dynamic Mesh (R-DMesh), a unified framework designed to generate high-fidelity 4D meshes that are ``rectified'' to align with video context. Unlike standard motion transfer approaches, our method introduces a novel VAE that explicitly disentangles the input into a conditional base mesh, relative motion trajectories, and a crucial rectification jump offset. This offset is learned to automatically transform the arbitrary pose of the input mesh to match the video's initial state before animation begins. We process these components via a Triflow Attention mechanism, which leverages vertex-wise geometric features to modulate the three orthogonal flows, ensuring physical consistency and local rigidity during the rectification and animation process. For generation, we employ a Rectified Flow-based Diffusion Transformer conditioned on pre-trained video latents, effectively transferring rich spatio-temporal priors to the 3D domain. To support this task, we construct Video-RDMesh, a large-scale dataset of over 500k dynamic mesh sequences specifically curated to simulate pose misalignment. Extensive experiments demonstrate that R-DMesh not only solves the alignment problem but also enables robust downstream applications, including pose retargeting and holistic 4D generation. 
 
-## 🚀 Features
 
-- **Advanced VAE Architecture**: Multi-hop encoding with band mode for efficient mesh representation
-- **Diffusion-based Animation**: Text-to-trajectory generation for dynamic mesh animation
-- **Multi-modal Conditioning**: Support for video and text conditioning
-- **High Performance**: Optimized for large-scale mesh processing
+## 🔥 Latest News
+
+* May 12, 2026: 👋 The training & inference code of **R-DMesh** has been released! The checkpoint will be released in a few days.
+* Mar 28, 2026: 👋 **R-DMesh** has been accepted by [Siggraph2026](https://s2026.siggraph.org/)! We will release the code asap. Please stay tuned for updates！
 
 ## 🔧 Installation
 
