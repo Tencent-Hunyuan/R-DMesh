@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>R-DMesh: Robust Dynamic Mesh Generation Framework</h1>
+  <h1>R-DMesh: Video-Guided 3D Animation via Rectified Dynamic Mesh Flow</h1>
   
   <p>A powerful framework for dynamic mesh generation and animation</p>
 </div>
