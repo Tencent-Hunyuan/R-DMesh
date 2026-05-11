@@ -17,7 +17,7 @@ Zijie Wu<sup>1,2</sup>, Lixin Xu<sup>2</sup>, Puhua Jiang<sup>2</sup>, Sicong Li
 <a href="https://r-dmesh.github.io/"><img src='https://img.shields.io/badge/Project-RDMesh-brightgreen?logo=github' alt='Project'></a>
 <a href="https://arxiv.org/abs/"><img src='https://img.shields.io/badge/arXiv-RDMesh-B31B1B?logo=arxiv' alt='Paper PDF'></a>
 <a href="https://youtu.be/xBrMjPnH3_w"><img src='https://img.shields.io/badge/Video-Demo-FF0000?logo=youtube' alt='Video'></a>
-<a href=""><img src='https://img.shields.io/badge/HuggingFace-Model Weights-yellow?logo=huggingface' alt='Hugging Face Weights'></a>
+<a href="https://huggingface.co/JarrentWu/R-DMesh"><img src='https://img.shields.io/badge/HuggingFace-Model Weights-yellow?logo=huggingface' alt='Hugging Face Weights'></a>
 <a href=""><img src='https://img.shields.io/badge/Google%20Drive-Model Weights-blue?logo=googledrive&logoColor=white' alt='Download from Google Drive'></a>
 
 </div>
@@ -51,11 +51,11 @@ pip install -r requirements.txt
 
 ### 2. Download Pretrained Models
 
-Download the pretrained checkpoints from [🤗 HuggingFace](https://huggingface.co/R-DMesh) and place them under `./ckpts/`:
+Download the pretrained checkpoints from [🤗 HuggingFace](https://huggingface.co/JarrentWu/R-DMesh) and place them under `./ckpts/`:
 
 ```bash
 # Option 1: Use huggingface-cli
-huggingface-cli download R-DMesh/R-DMesh --local-dir ./ckpts
+huggingface-cli download JarrentWu/R-DMesh --local-dir ./ckpts
 
 # Option 2: Manually download and organize
 ```
