@@ -1,0 +1,15 @@
+torchdiffeq
+tqdm
+git+https://github.com/facebookresearch/pytorch3d.git@stable 
+einops
+bpy==4.4.0
+opencv-python
+easydict
+diffusers
+ftfy
+transformers==4.55.3
+decord
+librosa
+imageio
+peft
+flash_attn
