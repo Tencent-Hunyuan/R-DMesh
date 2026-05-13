@@ -217,8 +217,6 @@ def main(opt):
 
             # --- Forward Pass (Encode Only) ---
             query = vertices[:, 0] 
-            
-            # model output: x0=[B, N, C], xt=[B*T, N, C] (假设 flext 架构)
             x = model(vertices, query, faces=faces, valid_mask=valid_mask, 
                            adj_matrix=adj_matrix_nhops, num_traj=opt.num_traj, 
                            just_encode=True)
