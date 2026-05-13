@@ -26,6 +26,8 @@ Zijie Wu<sup>1,2</sup>, Lixin Xu<sup>2</sup>, Puhua Jiang<sup>2</sup>, Sicong Li
   <img src="https://raw.githubusercontent.com/R-DMesh/R-DMesh.github.io/main/assets/teaser.png" alt="R-DMesh Teaser" width="100%">
 </div>
 
+![Demo GIF](https://github.com/R-DMesh/R-DMesh.github.io/tree/main/assets/teaser.gif)
+
 ## 📖 Overview
 
 We present **R-DMesh**: a unified video-guided 4D mesh generation framework that tackles the long-overlooked pose misalignment dilemma. Given a static mesh and a reference video with arbitrary initial poses, our method automatically rectifies the mesh to the video's starting state and generates high-fidelity, temporally consistent animations. Beyond video-driven animation, R-DMesh naturally supports a wide range of downstream applications, including pose retargeting, motion retargeting, and holistic 4D generation.
@@ -116,6 +118,23 @@ python test_drive.py \
     --json_dir /your/path/to/dvae_factor \
     --wan_model_dir /your/path/to/Wan2.2-TI2V-5B
 ```
+
+An example is as follows, run:
+```bash
+python test_drive.py \
+    --mesh_list warrok_w_kurniawan.fbx \
+    --video_list dance7.mp4 \
+    --rf_exp rdmeshdit --rf_epoch f \
+    --num_hops 5 --alpha_hops 0.7 \
+    --num_traj 4096 --guidance_scale 1.5 \
+    --export
+```
+Then, you will get the dynamic mesh fbx file and a frontal rendered video, the generated 4D asset should look like:
+
+![Demo GIF](https://github.com/R-DMesh/R-DMesh.github.io/tree/main/assets/warrok_demo.gif)
+
+> ⚠️ **Note on custom driving videos:**  
+> If you want to use your own video to drive the mesh, please first remove the background and replace it with pure black using tools such as [SAM 3](https://github.com/facebookresearch/sam3) (or other video matting / segmentation tools) **before** running inference. Videos with cluttered or non-black backgrounds may lead to degraded motion extraction and poor animation quality.
 
 ## 🏋️‍♂️ Training
 
