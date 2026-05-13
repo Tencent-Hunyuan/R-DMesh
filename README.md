@@ -45,6 +45,9 @@ We present **R-DMesh**: a unified video-guided 4D mesh generation framework that
 conda create -n rdmesh python=3.11
 conda activate rdmesh
 
+# Install torch
+pip install torch==2.8.0 torchvision==0.23.0
+
 # Install dependencies
 pip install -r requirements.txt
 ```
@@ -98,7 +101,8 @@ python test_drive.py \
     --video_list your_video.mp4 \
     --rf_exp rdmeshdit --rf_epoch f \
     --num_hops 5 --alpha_hops 0.7 \
-    --num_traj 4096 --guidance_scale 1.5
+    --num_traj 4096 --guidance_scale 1.5 \
+    --export
 ```
 
 > 💡 The command above assumes the [default directory structure](#-expected-directory-structure) from the Preparation section.  
