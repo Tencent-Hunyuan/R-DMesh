@@ -4,7 +4,7 @@
 </div>
 
 <div align="center">
-  <h1>R-DMesh: Video-Guided 3D Animation via Rectified Dynamic Mesh Flow (Siggraph 2026)</h1>
+  <h1>R-DMesh: Video-Guided 3D Animation via Rectified Dynamic Mesh Flow (SIGGRAPH 2026)</h1>
   
   
 </div>
@@ -36,7 +36,7 @@ We present **R-DMesh**: a unified video-guided 4D mesh generation framework that
 
 * May 13, 2026: 👋 The checkpoint of **R-DMesh** has been released! Please give it a try!
 * May 12, 2026: 👋 The training & inference code of **R-DMesh** has been released! The checkpoint will be released in a few days.
-* Mar 28, 2026: 👋 **R-DMesh** has been accepted by [Siggraph2026](https://s2026.siggraph.org/)! We will release the code asap. Please stay tuned for updates！
+* Mar 28, 2026: 👋 **R-DMesh** has been accepted by [SIGGRAPH2026](https://s2026.siggraph.org/)! We will release the code asap. Please stay tuned for updates！
 
 ## 🔧 Preparation
 
