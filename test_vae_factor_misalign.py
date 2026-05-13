@@ -1,5 +1,3 @@
-### test_vae_factor_misalign.py: 每个通道单独计算mean/std
-
 import os
 import json
 import time
@@ -355,38 +353,4 @@ def main():
 if __name__ == '__main__':
     main()
 
-'''
 
-torchrun --nproc_per_node=8 \
-test_vae_factor_misalign.py \
---data_dir /mnt/zw2/zijiewu/Datasets/objxl_animation_bins_merged_4096_65f_filtered_trainset \
---max_length 4096 --batch_size 16 \
---vae_dir /mnt/zw/zijiewu/checkpoints \
---vae_exp dvae_nhops4_n2_new_enc8_64f_misalign_center_triflow_sep_recon_1218 \
---num_hops 4 --vae_epoch 150 --num_t 64
-
-torchrun --nproc_per_node=8 \
-test_vae_factor_misalign.py \
---data_dir /mnt/zw2/zijiewu/Datasets/objxl_animation_bins_merged_4096_65f_filtered_trainset \
---max_length 4096 --batch_size 16 \
---vae_dir /mnt/zw/zijiewu/checkpoints \
---vae_exp dvae_nhops4_n2_new_enc8_64f_misalign_center_triflow_sep_recon_per_ins_1218 \
---num_hops 4 --vae_epoch 150 --num_t 64
-
-torchrun --nproc_per_node=8 \
-test_vae_factor_misalign.py \
---data_dir /mnt/zw2/zijiewu/Datasets/objxl_animation_bins_merged_4096_65f_filtered_trainset \
---max_length 4096 --batch_size 16 \
---vae_dir /mnt/zw/zijiewu/checkpoints \
---vae_exp dvae_nhops4_n2_new_enc8_64f_misalign_center_triflow_sep_recon_per_ins_1218 \
---num_hops 4 --vae_epoch 190 --num_t 64
-
-torchrun --nproc_per_node=8 \
-test_vae_factor_misalign.py \
---data_dir /mnt/zw2/zijiewu/Datasets/objxl_animation_bins_merged_4096_65f_filtered_trainset \
---max_length 4096 --batch_size 16 \
---vae_dir /mnt/zw/zijiewu/checkpoints \
---vae_exp dvae_nhops4_n2_new_enc8_64f_misalign_center_triflow_sep_recon_per_ins_1218 \
---num_hops 4 --vae_epoch 330 --num_t 64
-
-'''
