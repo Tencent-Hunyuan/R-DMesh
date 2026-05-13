@@ -119,95 +119,142 @@ python test_drive.py \
 
 ## 🏋️‍♂️ Training
 
-### Train R-DMesh VAE
+The complete training pipeline consists of the following **6 stages**, which must be executed **sequentially**:
+
+```
+① Data Preparation  →  ② Train R-DMesh VAE  →  ③ Extract Video Latents  →  ④ Extract DMesh Latents  →  ⑤ Compute DMesh Feature Statistics  →  ⑥ Train R-DMesh DiT
+```
+
+| Stage | Step | Script | Output |
+| :---: | :--- | :--- | :--- |
+| ① | Data Preparation | — | Mesh / Video dataset |
+| ② | Train R-DMesh VAE | `train_dvae.py` | VAE checkpoints |
+| ③ | Extract Video Latents | `save_vid_latents.py` | Video latents |
+| ④ | Extract DMesh Latents | `save_dmesh_latents.py` | DMesh latents |
+| ⑤ | Compute DMesh Feature Statistics | `test_vae_factor_misalign.py` | Mean / std JSON factors |
+| ⑥ | Train R-DMesh DiT | `train_dit.py` | DiT checkpoints |
+
+---
+
+### ① Data Preparation
+
+Please refer to the scripts and README in the `data_construction` folder to build your training / validation data. This part of the code will be released soon.
+
+---
+
+### ② Train R-DMesh VAE
+
+Train the R-DMesh VAE that compresses dynamic meshes into a latent space. To be noted, we adopt **PLTA attention** from [AnimateAnyMesh++](https://arxiv.org/abs/2604.26917) for better performance.
+
 ```bash
 torchrun --nproc_per_node=8 train_dvae.py \
     --data_dir /path/to/training/data \
     --val_data_dir /path/to/validation/data \
     --ckpts_dir /path/to/checkpoints \
     --log_dir ./logs/test \
-    --train_epoch 1000 --batch_size 32 --enc_depth 8 --dim 256 --max_length 4096 \
-    --latent_dim 64 --latent_dim_x1 16 --num_t 64 --validate --is_training --lr 1e-4  \
-    --num_hops 4 --hop_mode band --n_layers 2  \
-    --sep_rec_loss \
-    --per_instance_loss \
-    --exp test
+    --exp test \
+    --train_epoch 1000 --batch_size 32 --lr 1e-4 \
+    --enc_depth 8 --dim 256 --max_length 4096 \
+    --latent_dim 64 --latent_dim_x1 16 --num_t 64 \
+    --num_hops 4 --hop_mode band --n_layers 2 \
+    --sep_rec_loss --per_instance_loss \
+    --validate --is_training
 ```
 
-### Extract Video Latents
+
+(Optional) After training, you can evaluate the reconstruction quality of the VAE using the [Test R-DMesh VAE](#test-r-dmesh-vae) script in the Evaluation section.
+
+---
+
+### ③ Extract Video Latents
+
+Extract latent features from reference videos using the pretrained video model ([Wan2.2-TI2V-5B](https://huggingface.co/Wan-AI/Wan2.2-TI2V-5B)). These latents will serve as the conditioning signal for DiT training.
+
 ```bash
 torchrun --nproc_per_node=8 save_vid_latents.py \
     --data_dir /path/to/mesh/data \
     --video_data_dir /path/to/video/data \
     --checkpoint_dir /path/to/pretrained/models \
+    --output_dir /path/to/output/latents \
     --batch_size 1 \
     --video_width 256 \
-    --output_dir /path/to/output/latents \
     --samp_layer 10
 ```
 
-### Extract DMesh Latents
+---
+
+### ④ Extract DMesh Latents
+
+Encode meshes into latent variables using the VAE trained in Stage ②. These latents will be used as the prediction target for DiT training.
+
 ```bash
 torchrun --nproc_per_node=8 save_dmesh_latents.py \
     --dataset_dir /path/to/dataset \
     --ckpt_dir /path/to/checkpoints \
+    --output_dir /path/to/output/latents \
     --exp your_experiment_name \
-    --epoch 330 \
-    --max_length 8192 \
-    --num_t 64 \
-    --batch_size 16 \
-    --num_hops 4 \
-    --num_traj 512 \
-    --output_dir /path/to/output/latents
+    --epoch which_epoch \
+    --max_length 8192 --batch_size 16 \
+    --num_t 64 --num_hops 4 --num_traj 512
 ```
 
-### Train R-DMesh DiT
+---
+
+### ⑤ Compute DMesh Feature Statistics
+
+Compute the per-channel **mean** and **standard deviation** of the DMesh latents produced by the VAE. These statistics are used to normalize (rescale) the latents so that their distribution is well-conditioned for DiT training. The resulting factors are saved as JSON files and later consumed by `train_dit.py` via the `--json_dir` argument.
+
+```bash
+torchrun --nproc_per_node=8 test_vae_factor_misalign.py \
+    --data_dir /path/to/training/data \
+    --vae_dir /path/to/dvae/checkpoints \
+    --vae_exp your_vae_experiment \
+    --vae_epoch which_epoch \
+    --max_length max_vertex_count --batch_size 16 \
+    --num_hops 4 --num_t 64
+```
+
+---
+
+### ⑥ Train R-DMesh DiT
+
+Train the conditional Diffusion Transformer using the video latents from Stage ③, the DMesh latents from Stage ④, and the normalization factors from Stage ⑤.
+
 ```bash
 torchrun --nproc_per_node=8 train_dit.py \
     --data_dir /path/to/latent/data \
     --latent_data_dir /path/to/video/latents \
+    --save_dir /path/to/checkpoints \
     --log_dir ./logs/test \
     --json_dir ./dvae_factors \
-    --save_dir /path/to/checkpoints \
     --dvae_dir /path/to/dvae/checkpoints \
     --vae_exp your_vae_experiment \
-    --vae_epoch 330 \
-    --rescale \
-    --batch_size 16 --max_length 8192 --train_epoch 500 --lr 1e-4 \
+    --vae_epoch which_epoch \
+    --exp test \
+    --batch_size 16 --max_length max_vertex_count --train_epoch 500 --lr 1e-4 \
     --mode vc --dit_layers 10 --cond_drop_prob 0.1 \
-    --exp test
+    --rescale
 ```
 
-## 📖 Usage
+---
+
+## 🔍 Evaluation
 
 ### Test R-DMesh VAE
+
+Evaluate the reconstruction quality of a trained R-DMesh VAE.
+
 ```bash
 python test_dvae.py \
     --dataset_dir /path/to/test/data \
     --ckpt_dir /path/to/checkpoints \
-    --max_length 4096 \
     --exp your_experiment_name \
-    --num_hops 4 --alpha_hops 0.5 --epoch 500 \
+    --epoch which_epoch \
+    --max_length 4096 \
+    --num_hops 4 --alpha_hops 0.5 \
     --render
 ```
-
-### Animate Mesh
-```bash
-python test_drive.py \
-    --data_dir /path/to/meshes \
-    --video_data_dir /path/to/reference/videos \
-    --vae_dir /path/to/vae/checkpoints \
-    --rf_model_dir /path/to/rf/checkpoints \
-    --json_dir ./dvae_factors \
-    --wan_model_dir /path/to/wan/model \
-    --num_hops 5 --mode vc --alpha_hops 0.7 \
-    --seed 666 --rf_epoch 223 --num_traj 4096 --dit_layers 10 \
-    --rf_exp your_rf_experiment \
-    --testset your_test_set --guidance_scale 1.5 --video_width 256 --num_test 10 \
-    --mesh_list your_mesh.glb \
-    --video_list your_video.mp4
-```
-
+    
 ## 📊 Configuration
 
 Key parameters for customization:
