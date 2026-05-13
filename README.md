@@ -22,11 +22,7 @@ Zijie Wu<sup>1,2</sup>, Lixin Xu<sup>2</sup>, Puhua Jiang<sup>2</sup>, Sicong Li
 
 </div>
 
-<div align="center">
-  <img src="https://raw.githubusercontent.com/R-DMesh/R-DMesh.github.io/main/assets/teaser.png" alt="R-DMesh Teaser" width="100%">
-</div>
-
-![Demo GIF](https://github.com/R-DMesh/R-DMesh.github.io/tree/main/assets/teaser.gif)
+![Demo GIF](https://raw.githubusercontent.com/R-DMesh/R-DMesh.github.io/main/assets/teaser.gif)
 
 ## 📖 Overview
 
@@ -131,7 +127,7 @@ python test_drive.py \
 ```
 Then, you will get the dynamic mesh fbx file and a frontal rendered video, the generated 4D asset should look like:
 
-![Demo GIF](https://github.com/R-DMesh/R-DMesh.github.io/tree/main/assets/warrok_demo.gif)
+![Demo GIF](https://raw.githubusercontent.com/R-DMesh/R-DMesh.github.io/main/assets/warrok_demo.gif)
 
 > ⚠️ **Note on custom driving videos:**  
 > If you want to use your own video to drive the mesh, please first remove the background and replace it with pure black using tools such as [SAM 3](https://github.com/facebookresearch/sam3) (or other video matting / segmentation tools) **before** running inference. Videos with cluttered or non-black backgrounds may lead to degraded motion extraction and poor animation quality.
