@@ -255,24 +255,35 @@ python test_dvae.py \
     --render
 ```
     
-## 📊 Configuration
+## 📚 Citation
 
-Key parameters for customization:
-- `--num_hops`: Number of hops for mesh encoding (default: 4)
-- `--hop_mode`: Hop aggregation mode (band/full)
-- `--max_length`: Maximum sequence length for processing
-- `--num_traj`: Number of trajectories for animation
-- `--guidance_scale`: Control strength for conditional generation
+If you find our work interesting or helpful for your research, please consider citing:
+```bibtex
+@article{wu2026rdmesh,
+  title={R-DMesh: Video-Guided 3D Animation via Rectified Dynamic Mesh Flow},
+  author={Wu, Zijie and Xu, Lixin and Jiang, Puhua, and Liu, Sicong and Guo, Chunchao and Bai, Xiang},
+  journal={arXiv preprint arXiv:},
+  year={2026}
+}
+```
 
-## 🤝 Contributing
-
-We welcome contributions! Please feel free to submit issues and pull requests.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+Please also consider citing [AnimateAnyMesh](https://openaccess.thecvf.com/content/ICCV2025/papers/Wu_AnimateAnyMesh_A_Feed-Forward_4D_Foundation_Model_for_Text-Driven_Universal_Mesh_ICCV_2025_paper.pdf) and [AnimateAnyMesh++](https://arxiv.org/abs/2604.26917), which inspired this work and provided techniques adopted in R-DMesh.
+```bibtex
+@inproceedings{wu2025animateanymesh,
+  title={Animateanymesh: A feed-forward 4d foundation model for text-driven universal mesh animation},
+  author={Wu, Zijie and Yu, Chaohui and Wang, Fan and Bai, Xiang},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  pages={13557--13568},
+  year={2025}
+}
+@article{wu2026animateanymesh++,
+  title={AnimateAnyMesh++: A Flexible 4D Foundation Model for High-Fidelity Text-Driven Mesh Animation},
+  author={Wu, Zijie and Yu, Chaohui and Wang, Fan and Bai, Xiang},
+  journal={arXiv preprint arXiv:2604.26917},
+  year={2026}
+}
+```
 
 ## 🙏 Acknowledgments
 
-- Thanks to the open-source community for various libraries and tools
-- Inspired by recent advances in mesh processing and diffusion models
+Our code references some great repos, which are [AnimateAnyMesh](https://github.com/JarrentWu1031/AnimateAnyMesh), [AnimateAnyMesh++](https://github.com/JarrentWu1031/AnimateAnyMesh-pp) and [Wan2_2](https://github.com/Wan-Video/Wan2.2). We thank the authors for their excellent works! <br>
