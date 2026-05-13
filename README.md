@@ -127,9 +127,9 @@ The complete training pipeline consists of the following **6 stages**, which mus
 
 | Stage | Step | Script | Output |
 | :---: | :--- | :--- | :--- |
-| ① | Data Preparation | — | Mesh / Video dataset |
+| ① | Data Preparation | `data_construction/` | Mesh / Video dataset |
 | ② | Train R-DMesh VAE | `train_dvae.py` | VAE checkpoints |
-| ③ | Extract Video Latents | `save_vid_latents.py` | Video latents |
+| ③ | Extract Video Latents | `Wan2_2/save_vid_latents.py` | Video latents |
 | ④ | Extract DMesh Latents | `save_dmesh_latents.py` | DMesh latents |
 | ⑤ | Compute DMesh Feature Statistics | `test_vae_factor_misalign.py` | Mean / std JSON factors |
 | ⑥ | Train R-DMesh DiT | `train_dit.py` | DiT checkpoints |
