@@ -21,7 +21,7 @@ Zijie Wu<sup>1,2</sup>, Lixin Xu<sup>2</sup>, Puhua Jiang<sup>2</sup>, Sicong Li
 <a href="https://arxiv.org/abs/2605.13838"><img src='https://img.shields.io/badge/arXiv-RDMesh-B31B1B?logo=arxiv' alt='Paper PDF'></a>
 <a href="https://youtu.be/xBrMjPnH3_w"><img src='https://img.shields.io/badge/Video-Demo-FF0000?logo=youtube' alt='Video'></a>
 <a href="https://huggingface.co/JarrentWu/R-DMesh"><img src='https://img.shields.io/badge/HuggingFace-Model Weights-yellow?logo=huggingface' alt='Hugging Face Weights'></a>
-<a href=""><img src='https://img.shields.io/badge/Google%20Drive-Model Weights-blue?logo=googledrive&logoColor=white' alt='Download from Google Drive'></a>
+<a href="https://drive.google.com/drive/folders/1yPwn2ult4T86_pIeFkhf-FPw4xcQgd3M?usp=drive_link"><img src='https://img.shields.io/badge/Google%20Drive-Model Weights-blue?logo=googledrive&logoColor=white' alt='Download from Google Drive'></a>
 
 </div>
 
