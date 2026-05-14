@@ -18,7 +18,7 @@ Zijie Wu<sup>1,2</sup>, Lixin Xu<sup>2</sup>, Puhua Jiang<sup>2</sup>, Sicong Li
 <sup>1</sup>Huazhong University of Science and Technology (HUST), <sup>2</sup>Tencent Hunyuan
 
 <a href="https://r-dmesh.github.io/"><img src='https://img.shields.io/badge/Project-RDMesh-brightgreen?logo=github' alt='Project'></a>
-<a href="https://arxiv.org/abs/"><img src='https://img.shields.io/badge/arXiv-RDMesh-B31B1B?logo=arxiv' alt='Paper PDF'></a>
+<a href="https://arxiv.org/abs/2605.13838"><img src='https://img.shields.io/badge/arXiv-RDMesh-B31B1B?logo=arxiv' alt='Paper PDF'></a>
 <a href="https://youtu.be/xBrMjPnH3_w"><img src='https://img.shields.io/badge/Video-Demo-FF0000?logo=youtube' alt='Video'></a>
 <a href="https://huggingface.co/JarrentWu/R-DMesh"><img src='https://img.shields.io/badge/HuggingFace-Model Weights-yellow?logo=huggingface' alt='Hugging Face Weights'></a>
 <a href=""><img src='https://img.shields.io/badge/Google%20Drive-Model Weights-blue?logo=googledrive&logoColor=white' alt='Download from Google Drive'></a>
@@ -281,7 +281,7 @@ If you find our work interesting or helpful for your research, please consider c
 @article{wu2026rdmesh,
   title={R-DMesh: Video-Guided 3D Animation via Rectified Dynamic Mesh Flow},
   author={Wu, Zijie and Xu, Lixin and Jiang, Puhua, and Liu, Sicong and Guo, Chunchao and Bai, Xiang},
-  journal={arXiv preprint arXiv:},
+  journal={arXiv preprint arXiv:2605.13838},
   year={2026}
 }
 ```
