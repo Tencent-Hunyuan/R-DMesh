@@ -278,10 +278,11 @@ python test_dvae.py \
 
 If you find our work interesting or helpful for your research, please consider citing:
 ```bibtex
-@article{wu2026rdmesh,
+@inproceedings{wu2026rdmesh,
   title={R-DMesh: Video-Guided 3D Animation via Rectified Dynamic Mesh Flow},
-  author={Wu, Zijie and Xu, Lixin and Jiang, Puhua, and Liu, Sicong and Guo, Chunchao and Bai, Xiang},
-  journal={arXiv preprint arXiv:2605.13838},
+  author={Wu, Zijie and Xu, Lixin and Jiang, Puhua and Liu, Sicong and Guo, Chunchao and Bai, Xiang},
+  booktitle={Proceedings of the Special Interest Group on Computer Graphics and Interactive Techniques Conference Conference Papers},
+  pages={1--12},
   year={2026}
 }
 ```
